@@ -1,9 +1,10 @@
 import JWT, { Secret } from 'jsonwebtoken';
+import passport from 'passport';
+import { Request, NextFunction, Response } from 'express';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as JwtStrategy, VerifiedCallback } from 'passport-jwt';
-import passport from 'passport';
+
 import User from '../../db/models/user';
-import { Request, NextFunction, Response } from 'express';
 import ErrorHandler from '../error/handler';
 
 export const signToken = (user: User) =>

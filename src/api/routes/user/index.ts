@@ -1,6 +1,5 @@
 import { localVerifiedCallback, JWTVerifiedCallback } from './../../authentication/index';
 import express from 'express';
-import passport from 'passport';
 import RequestValidator from '../../controllers/validation/routes';
 import UserController from '../../controllers/user';
 export const UserRouter = express.Router();
