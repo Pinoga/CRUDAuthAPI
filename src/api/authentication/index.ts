@@ -29,7 +29,8 @@ const configureAuthentication = () => {
 					.findOne({ where: { email: username } })
 					.then(user => {
 						if (user && user.password === password) {
-							return done(null, user);
+							const { password, ...userData } = user;
+							return done(null, userData);
 						} else {
 							return done(null, false, {
 								message: 'Incorrect username and/or password',
