@@ -25,7 +25,8 @@ const configureAuthentication = () => {
 		new LocalStrategy(
 			{ usernameField: 'email', passwordField: 'password' },
 			(username, password, done) => {
-				User.findOne({ where: { email: username } })
+				User.unscoped()
+					.findOne({ where: { email: username } })
 					.then(user => {
 						if (user && user.password === password) {
 							return done(null, user);
