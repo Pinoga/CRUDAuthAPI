@@ -5,17 +5,15 @@ import Joi, { string } from 'joi';
 
 const userSchema = Schema.user;
 
+// Schemas de validação das rotas da API
 const RequestValidator = {
 	userId: (req: Request, res: Response, next: NextFunction) => {
-		console.log('user id validation');
 		const schema = Joi.object({
 			id: userSchema.id.required(),
 		});
 		Validator.validateRequest(req, next, schema, 'params');
 	},
 	createUser: (req: Request, res: Response, next: NextFunction) => {
-		console.log('create user validation');
-		console.log(req.body);
 		const schema = Joi.object({
 			data: Joi.object()
 				.keys({

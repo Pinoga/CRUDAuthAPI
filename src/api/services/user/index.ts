@@ -1,10 +1,10 @@
 import User from '../../../db/models/user';
 
+// Os serviços retornam uma Promise para os controllers, indicando se houve erro interno ou não
 const UserService = {
 	getUsers: async () => {
 		try {
 			const users = await User.findAll();
-			console.log(users);
 			return Promise.resolve(users);
 		} catch (error) {
 			console.error(error);
@@ -33,7 +33,6 @@ const UserService = {
 	},
 	createUser: async (data: any) => {
 		try {
-			console.log('create service');
 			const user = await User.create(data);
 			return Promise.resolve(user);
 		} catch (error) {

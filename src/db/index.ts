@@ -26,6 +26,7 @@ export default {
 			}
 		);
 
+		// Inicialização dos modelos, espelhamento nas tabelas do banco e criação de usuário root na tabela User
 		return authenticate(sequelize)
 			.then(() => models.forEach(m => m.initialize(sequelize)))
 			.then(() => sequelize.sync({ force: true }))

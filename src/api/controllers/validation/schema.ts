@@ -1,5 +1,7 @@
 import Joi from 'joi';
 
+// Schema de validação dos dados do usuário
+
 const Schema = {
 	user: {
 		id: Joi.string().uuid(),

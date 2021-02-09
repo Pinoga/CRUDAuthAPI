@@ -3,8 +3,8 @@ import express, { Request, Response, NextFunction } from 'express';
 
 export const ApiRouter = express.Router();
 
+// Healthcheck da rota /api
 ApiRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
-	console.log('api');
 	res.locals.statusCode = 200;
 	res.locals.data = { msg: 'OK' };
 	next();

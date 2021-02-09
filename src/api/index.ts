@@ -30,11 +30,12 @@ export const startServer = (sequelize: Sequelize) => {
 	// Rota da API
 	app.use('/api', ApiRouter);
 
-	//
+	// Todas as respostas bem-sucedidas passam pelo último middleware para garantir a uniformidade e modularização
 	app.use((req: any, res: Response, next: NextFunction) => {
 		handleResponse(res, null, next);
 	});
 
+	// Todas as respostas de erro também passam pelo middleware de tratamento de erro do express
 	app.use((err: ErrorHandler, req: any, res: Response, next: NextFunction) => {
 		handleResponse(res, err, next);
 	});

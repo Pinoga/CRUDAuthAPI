@@ -4,10 +4,10 @@ import User from '../../../db/models/user';
 import ErrorHandler from '../../error/handler';
 import UserService from '../../services/user';
 
+// Todos os controllers chamam a função next() em caso de sucesso, para formatação da resposta
 const UserController = {
 	getUsers: async (req: Request, res: Response, next: NextFunction) => {
 		try {
-			console.log('users');
 			const users = await UserService.getUsers();
 			res.locals.statusCode = 200;
 			res.locals.data = users;
@@ -18,7 +18,6 @@ const UserController = {
 	},
 	getUser: async (req: Request, res: Response, next: NextFunction) => {
 		try {
-			console.log('user');
 			const user = await UserService.getUser(req.params.id);
 			res.locals.statusCode = 200;
 			res.locals.data = user;
@@ -39,7 +38,6 @@ const UserController = {
 	},
 	createUser: async (req: Request, res: Response, next: NextFunction) => {
 		try {
-			console.log('create');
 			const user = await UserService.createUser(req.body.data);
 			res.locals.statusCode = 200;
 			res.locals.data = user;
@@ -58,6 +56,8 @@ const UserController = {
 			next(new ErrorHandler(500, 'Error while updating user'));
 		}
 	},
+
+	// Tanto no caso de login quanto de cadastro, um novo token JWT será gerado e retornado para o cliente em forma do header Set-Cookie: token=<token>
 	signIn: (req: Request, res: Response, next: NextFunction) => {
 		res.cookie('token', signToken(req.user as User));
 		res.locals.statusCode = 200;
@@ -77,6 +77,8 @@ const UserController = {
 			next(new ErrorHandler(500, 'Error while creating account'));
 		}
 	},
+
+	// Em caso de logout, deleta o cookie do token
 	signOut: (req: Request, res: Response, next: NextFunction) => {
 		res.clearCookie('token');
 		res.locals.statusCode = 200;

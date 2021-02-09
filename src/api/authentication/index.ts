@@ -7,6 +7,7 @@ import { Strategy as JwtStrategy, VerifiedCallback } from 'passport-jwt';
 import User from '../../db/models/user';
 import ErrorHandler from '../error/handler';
 
+// Criação do token JWT com data de expiração de um dia
 export const signToken = (user: User) =>
 	JWT.sign(
 		{
@@ -18,6 +19,7 @@ export const signToken = (user: User) =>
 		process.env.JWT_SECRET as Secret
 	);
 
+// Validação do email e da senha e callbacks para os diferentes casos
 const configureAuthentication = () => {
 	passport.use(
 		new LocalStrategy(
@@ -38,6 +40,7 @@ const configureAuthentication = () => {
 		)
 	);
 
+	// Validação do token JWT e callbacks para os diferentes casos
 	passport.use(
 		new JwtStrategy(
 			{
@@ -46,8 +49,6 @@ const configureAuthentication = () => {
 				passReqToCallback: true,
 			},
 			(req: Request, payload: any, done: VerifiedCallback) => {
-				console.log('authenticating jwt');
-				console.log(payload.sub);
 				User.findOne({
 					where: { id: payload.sub },
 				})
@@ -61,6 +62,7 @@ const configureAuthentication = () => {
 		)
 	);
 
+	// Serialiação e desserialização do usuário para armazenamento no req.user
 	passport.serializeUser(function (user, done) {
 		done(null, user);
 	});
@@ -70,6 +72,7 @@ const configureAuthentication = () => {
 	});
 };
 
+// Customizações do callback de pós-verificação do Passport, para correta formatação da resposta
 export const localVerifiedCallback: VerifiedCallback = (
 	req: Request,
 	res: Response,
