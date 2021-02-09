@@ -23,7 +23,6 @@ const configureAuthentication = () => {
 		new LocalStrategy(
 			{ usernameField: 'email', passwordField: 'password' },
 			(username, password, done) => {
-				console.log(`authenticating ${username}${password}`);
 				User.findOne({ where: { email: username } })
 					.then(user => {
 						if (user && user.password === password) {

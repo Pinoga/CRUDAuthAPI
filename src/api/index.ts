@@ -14,9 +14,12 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 
 export const startServer = (sequelize: Sequelize) => {
+	//Inicializa as estratégias de autenticação do Passport
 	configureAuthentication();
+
 	const app = express();
 
+	// Middlewares
 	app.use(morgan('common'));
 	app.use(helmet());
 	app.use(cors());
@@ -24,15 +27,15 @@ export const startServer = (sequelize: Sequelize) => {
 	app.use(cookieParser());
 	app.use(passport.initialize());
 
+	// Rota da API
 	app.use('/api', ApiRouter);
 
+	//
 	app.use((req: any, res: Response, next: NextFunction) => {
-		console.log('success middleware');
 		handleResponse(res, null, next);
 	});
 
 	app.use((err: ErrorHandler, req: any, res: Response, next: NextFunction) => {
-		console.log('error middleware');
 		handleResponse(res, err, next);
 	});
 
