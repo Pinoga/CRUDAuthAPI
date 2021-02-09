@@ -33,6 +33,7 @@ export default class User extends Model {
 					allowNull: true,
 				},
 				email: {
+					unique: true,
 					type: DataTypes.STRING,
 					allowNull: false,
 				},
