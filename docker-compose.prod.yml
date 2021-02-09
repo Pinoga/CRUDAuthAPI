@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+    api:
+        build:
+            context: .
+            dockerfile: ./Dockerfile.prod
+        ports:
+            - '${HOST_PORT}:${PORT}'
+        depends_on:
+            - 'postgres'
+    postgres:
+        image: postgres:13.1-alpine
+        ports:
+            - '5432:5432'
