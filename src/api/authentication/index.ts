@@ -25,12 +25,10 @@ const configureAuthentication = () => {
 		new LocalStrategy(
 			{ usernameField: 'email', passwordField: 'password' },
 			(username, password, done) => {
-				User.unscoped()
-					.findOne({ where: { email: username } })
+				User.findOne({ where: { email: username, password: password } })
 					.then(user => {
-						if (user && user.password === password) {
-							const { password, ...userData } = user;
-							return done(null, userData);
+						if (user) {
+							return done(null, user);
 						} else {
 							return done(null, false, {
 								message: 'Incorrect username and/or password',
