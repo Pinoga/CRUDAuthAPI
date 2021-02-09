@@ -14,18 +14,18 @@ Arquitetei o sistema pensando na [separação de responsabilidades](https://pt.s
 
 ## Instalação
 ```
-git clone https://github.com/Pinoga/uaiFood.git
-cd uaiFood
+git clone https://github.com/Pinoga/CRUDAuthAPI.git
+cd CRUDAuthAPI
 
 //versão de desenvolvimento
-sudo docker-compose up --build
+cd env.dev && sudo docker-compose up --build
 
 //versão de produção
 sudo docker-compose -f docker-compose.prod.yml up --build
 ```
 
 ## Uso
-Após rodar os comandos de instalação, a API estará disponível no endpoint http://localhost:${HOST_PORT}/api/users, onde HOST_PORT tem como default 3000.
+Após rodar os comandos de instalação, a API estará disponível no endpoint http://localhost:${HOST_PORT}/api/users, onde HOST_PORT está definido no `.env`.
 
 ## Formato
 As respostas da API são sempre do seguinte formato:
