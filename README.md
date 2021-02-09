@@ -25,8 +25,10 @@ sudo docker-compose -f docker-compose.prod.yml up --build
 ```
 
 ## Uso
-Após rodar os comandos de instalação, a API estará disponível no endpoint http://localhost:${HOST_PORT}/api/users, onde `HOST_PORT` está definido no `.env`.
-O usuário `root@root.com` com senha `root` é criado na inicialização do servidor.
+- Após rodar os comandos de instalação, a API estará disponível no endpoint http://localhost:${HOST_PORT}/api/users, onde `HOST_PORT` está definido no `.env`.
+- O usuário `root@root.com` com senha `root` é criado na inicialização do servidor.
+- As portas `5432` e `HOST_PORT` devem estar livres na máquina que rodará o servidor.
+- O diretório indicado no campo `volumes` do `docker-compose.yml` (default `/tmp/db_vol_prod`), por questões de segurança, deve ser criado anteriormente à inicialização dos containeres.
 
 ## Formato
 As respostas da API são sempre do seguinte formato:
