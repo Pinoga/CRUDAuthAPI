@@ -9,6 +9,11 @@ export default class User extends Model {
 	public readonly createAt!: Date;
 	public readonly updatedAt!: Date;
 
+	public toJSON() {
+		const { password, createdAt, updatedAt, ...values } = this.get();
+		return values;
+	}
+
 	public static initialize(sequelize: Sequelize) {
 		return this.init(
 			{
