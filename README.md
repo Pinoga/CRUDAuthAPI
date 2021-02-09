@@ -49,13 +49,13 @@ As respostas da API são sempre do seguinte formato:
 ```
 Onde `message` contém a mensagem de erro, e `data.payload` é o corpo relevante da resposta, que pode ser um `array`, `objeto`, `null`, ou algum outro valor.
 
-#### 1. Recuperar usuário `/api/users/:id`
+### 1. Recuperar usuário `/api/users/:id`
 
   Onde `:id` é o ID do usuário
 
-#### 2. Recuperar todos usuários `/api/users`
+### 2. Recuperar todos usuários `/api/users`
 
-#### 3. Criar usuário `/api/users/create`
+### 3. Criar usuário `/api/users/create`
   
   Para cadastrar um novo usuário, os seguintes parâmetros são possíveis:
   - **firstName**: Nome: `String (opcional)`
@@ -74,7 +74,7 @@ Onde `message` contém a mensagem de erro, e `data.payload` é o corpo relevante
   ```
   Após uma requisição bem-sucedida, os dados do usuário serão retornados no corpo da resposta.
   
-#### 4. Atualizar usuário `/api/users/update/:id`
+### 4. Atualizar usuário `/api/users/update/:id`
 
   Para atualizar um novo usuário, os seguintes parâmetros são possíveis e todos são opcionais:
   - **firstName**: Nome: `String (opcional)`
@@ -89,12 +89,12 @@ Onde `message` contém a mensagem de erro, e `data.payload` é o corpo relevante
   }
   ```
   
-#### 5. Remover usuário `/api/users/delete/:id`
+### 5. Remover usuário `/api/users/delete/:id`
 
   Onde `:id` é o ID do usuário
     
 
-### To-do list:
+## To-do list:
 
   - Armazenamento da senha em hash
   - Senha do usuário não é retornada pela API
