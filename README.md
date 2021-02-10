@@ -21,10 +21,10 @@ cd CRUDAuthAPI
 #Versão de desenvolvimento
 ######################################################################
 #Rodando a API
-cd server/env.dev && sudo docker-compose up --build
+cd server/env.dev && sudo docker-compose -f docker-compose.dev.yml up --build
 
 #Rodando o Front
-cd ../../web/env.dev && sudo docker-compose up --build
+cd ../../web/env.dev && sudo docker-compose -f docker-compose.dev.yml up --build
 ######################################################################
 
 
