@@ -1,8 +1,8 @@
-# API - CRUD e autenticação
+# API e Front - CRUD e autenticação
 
 ## Frameworks e Tecnologias
 
-A API é servida em `NodeJs`, com as frameworks `express` e `passportjs`.
+A API é servida em `NodeJs`, com as frameworks `express` e `passportjs` e o Front é servido por uma aplicação em `ReactJs`.
 Arquitetei o sistema pensando na [separação de responsabilidades](https://pt.stackoverflow.com/questions/417198/o-que-%C3%A9-separa%C3%A7%C3%A3o-de-interesses-soc-separation-of-concerns#:~:text=A%20Separa%C3%A7%C3%A3o%20de%20Responsabilidades%20%C3%A9,sejam%20respons%C3%A1veis%20por%20responsabilidades%20distintas.) e na [Arquitetura multicamada](https://pt.wikipedia.org/wiki/Arquitetura_multicamada), onde o acesso aos dados, lógica de negócio e controladores são separados, e a organização dos diretórios facilita a modularização e escalabilidade:
 
   <img src=https://i.imgur.com/mdEazH6.png width=400>
@@ -18,19 +18,34 @@ Arquitetei o sistema pensando na [separação de responsabilidades](https://pt.s
 git clone https://github.com/Pinoga/CRUDAuthAPI.git
 cd CRUDAuthAPI
 
-//versão de desenvolvimento
-cd env.dev && sudo docker-compose up --build
+#Versão de desenvolvimento
+######################################################################
+#Rodando a API
+cd server/env.dev && sudo docker-compose -f docker-compose.dev.yml up --build
 
-//versão de produção
-sudo docker-compose -f docker-compose.prod.yml up --build
+#Rodando o Front
+cd ../../web/env.dev && sudo docker-compose -f docker-compose.dev.yml up --build
+######################################################################
+
+
+#Versão de homologação
+######################################################################
+#Rodando a API
+cd server && sudo docker-compose -f docker-compose.prod.yml up --build
+
+#Rodando o Front
+cd ../web && sudo docker-compose -f docker-compose.prod.yml up --build
+######################################################################
 ```
 
 ## Uso
 
 -   Após rodar os comandos de instalação, a API estará disponível no endpoint http://localhost:${HOST_PORT}/api/users, onde `HOST_PORT` está definido no `.env`.
+-   O Front de desenvolvimento, por default, se comunica com a API de desenvolvimento e o de homologação, com a de homologação. Essa lógica pode ser customizada alterando a variável de ambiente REACT_APP_API_URL do .env correspondente
 -   O usuário `root@root.com` com senha `root` é criado na inicialização do servidor.
 -   As portas `5432` e `HOST_PORT` devem estar livres na máquina que rodará o servidor.
 -   O diretório indicado no campo `volumes` do `docker-compose.yml` (default `/tmp/db_vol_prod`), por questões de segurança, deve ser criado anteriormente à inicialização dos containeres.
+-   O Front possui uma tela de login, cadastro e uma tela para atualizar os dados do usuário. A navegação é auto-explicativa
 
 ## Formato
 
