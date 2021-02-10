@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+    web:
+        build:
+            context: ..
+            dockerfile: env.dev/Dockerfile.dev
+            args:
+                - REACT_APP_API_URL=$REACT_APP_API_URL
+        ports:
+            - '${HOST_PORT}:${PORT}'
+        volumes:
+            - '../src:/app/src'

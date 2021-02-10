@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+    web:
+        build:
+            context: .
+            dockerfile: ./Dockerfile.prod
+        env_file:
+            - ./.env
+        ports:
+            - ${HOST_PORT}:80
