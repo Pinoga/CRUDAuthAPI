@@ -10,8 +10,6 @@ services:
             - '${HOST_PORT}:${PORT}'
         depends_on:
             - 'postgres'
-        networks:
-            - proxynet
     postgres:
         image: postgres:13.1-alpine
         env_file:
@@ -20,7 +18,3 @@ services:
             - 5432:5432
         volumes:
             - /tmp/db_vol_prod:/var/lib/postgresql/data
-
-networks:
-    proxynet:
-        name: internal
